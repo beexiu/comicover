@@ -110,7 +110,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>File:</string>
+            <string>Image:</string>
            </property>
           </widget>
          </item>

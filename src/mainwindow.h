@@ -44,6 +44,7 @@ private:
 
     QString   mZipPath;
     QLabel    *mPosLabel;
+    QLabel    *mZipLabel;
 
     QString    mImgName;
     QImage     mImage;

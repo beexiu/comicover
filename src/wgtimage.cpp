@@ -47,7 +47,8 @@ void wgtImage::resizeEvent(QResizeEvent *event)
 {
     QLabel::resizeEvent(event);
 
-    mMainWnd->setLog(QString("size: %1 %2").arg(event->size().width()).arg(event->size().height()));
+    if(mSrcImage.isNull())
+        return;
 
     QImage img = mSrcImage.scaled(event->size().width(), event->size().height(), Qt::KeepAspectRatio);
     mScaledPixmap = QPixmap::fromImage(img);

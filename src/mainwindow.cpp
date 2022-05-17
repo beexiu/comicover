@@ -16,7 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     mPosLabel = new QLabel(this);
-    ui->statusbar->addWidget(mPosLabel);
+    ui->statusbar->addWidget(mPosLabel, 1);
+    mZipLabel = new QLabel(this);
+    ui->statusbar->addWidget(mZipLabel);
 
     ui->lblImage->setMainWindow(this);
 
@@ -58,6 +60,8 @@ void MainWindow::loadZipFiles(QString sPath)
         ui->listFiles->addItems(files);
 
         loadImageFile(&zipR, files.at(0));
+
+        mZipLabel->setText(mCurFile);
     }
 
     zipR.close();
