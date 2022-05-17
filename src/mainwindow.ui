@@ -116,7 +116,7 @@
        <item row="4" column="0">
         <widget class="QLabel" name="lblLog">
          <property name="text">
-          <string>Log</string>
+          <string/>
          </property>
         </widget>
        </item>

@@ -59,6 +59,8 @@ LIBS += -lz
 CONFIG += lrelease
 CONFIG += embed_translations
 
+ICON = logo.icns
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
