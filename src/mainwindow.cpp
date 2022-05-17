@@ -45,6 +45,8 @@ void MainWindow::loadZipFiles(QString sPath)
 {
     mZipPath = sPath;
 
+    mCurFile = QFileInfo(sPath).fileName();
+
     QuaZip zipR(mZipPath);             //设置读取的zip文件
     zipR.open(QuaZip::mdUnzip);             //以读取的方式打开zip文件
     QStringList files = zipR.getFileNameList();
@@ -91,6 +93,15 @@ void MainWindow::on_btnStart_clicked()
         return;
 
     loadZipFiles(fileName);
+
+    QFileInfo fileInfo(fileName);
+    QString dirPath = fileInfo.dir().absolutePath();
+    QStringList sl;
+    sl.append("*.zip");
+    mZipFileList = fileInfo.dir().entryInfoList(sl, QDir::Files, QDir::SortFlag::Name);
+
+    for(int i =  0; i < mZipFileList.size(); i++)
+        printf("%s\n", mZipFileList.at(i).fileName().toLocal8Bit().data());
 }
 
 void MainWindow::updateCoverThumb()
@@ -157,5 +168,26 @@ void MainWindow::on_listFiles_currentTextChanged(const QString &currentText)
     zipR.open(QuaZip::mdUnzip);
     loadImageFile(&zipR, currentText);
     zipR.close();
+}
+
+
+void MainWindow::on_btnNext_clicked()
+{
+    QList<QFileInfo>::Iterator it = mZipFileList.begin();
+    QFileInfo fi;
+
+    for(int i = 0; i < mZipFileList.size(); i++)
+    {
+        if(mZipFileList.at(i).fileName() == mCurFile)
+        {
+            printf( "%s\n", mZipFileList.at(i).fileName().toLocal8Bit().data() );
+
+            if(i < mZipFileList.size() - 1)
+            {
+                loadZipFiles(mZipFileList.at(i+1).absoluteFilePath());
+                break;
+            }
+        }
+    }
 }
 

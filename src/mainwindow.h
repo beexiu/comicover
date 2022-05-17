@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include <QFileInfoList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +32,8 @@ private slots:
 
     void on_listFiles_currentTextChanged(const QString &currentText);
 
+    void on_btnNext_clicked();
+
 private:
     void loadZipFiles(QString sPath);
 
@@ -44,5 +47,8 @@ private:
 
     QString    mImgName;
     QImage     mImage;
+
+    QString   mCurFile;
+    QFileInfoList mZipFileList;
 };
 #endif // MAINWINDOW_H
